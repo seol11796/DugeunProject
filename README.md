@@ -7,4 +7,4 @@
 - 마이페이지 
 - 게시판
 
-<img width="80%" src="https://user-images.githubusercontent.com/89733207/204995722-e96f75fb-355b-4eeb-b995-54b02bcefd89.png"/>
+<img width="20%" src="https://user-images.githubusercontent.com/89733207/204995722-e96f75fb-355b-4eeb-b995-54b02bcefd89.png"/>
