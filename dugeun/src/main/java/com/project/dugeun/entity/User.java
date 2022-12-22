@@ -17,10 +17,10 @@ public class User {
     @Id
     @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id; // 유저 id
+    private Long userId; // 유저 id
 
-    @Column(nullable = false,length = 30)
-    private String name; // 유저 이름
+    @Column(name="name",nullable = false,length = 30)
+    private String userName; // 유저 이름
 
     @Column(name="age",nullable = false)
     private int age; // 유저 나이
@@ -31,5 +31,6 @@ public class User {
     @Lob
     @Column(name="description", nullable = false)
     private String description; // 유저 자기소개
+
 
 }
