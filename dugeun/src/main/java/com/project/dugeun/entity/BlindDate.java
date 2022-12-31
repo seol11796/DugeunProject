@@ -14,6 +14,7 @@ import java.util.Date;
 @Getter @Setter
 @ToString
 public class BlindDate  {
+
     @Id
     @Column(name = "blind_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
