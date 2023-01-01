@@ -34,7 +34,4 @@ public class BlindDate  {
 
     @Column(name = "another_user_score")
     private Long another_user_score;
-
-
-
 }
