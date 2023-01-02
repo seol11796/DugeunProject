@@ -28,8 +28,8 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @Column(name="external_id", unique = true)
-    private String externalId; // 카카오아이디
+    @Column(name="kakao_id", unique = true)
+    private String kakaoId; // 카카오아이디
 
     @Column(name="student_id")
     private Long studentId; // 학번
@@ -37,7 +37,7 @@ public class User {
     public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder){
         User user = new User();
         user.setName(userFormDto.getName());
-        user.setExternalId(userFormDto.getExternalId());
+        user.setKakaoId(userFormDto.getKakaolId());
         userFormDto.setStudentId(userFormDto.getStudentId());
         String password = passwordEncoder.encode(userFormDto.getPassword());
         user.setPassword(password);

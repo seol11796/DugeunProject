@@ -21,7 +21,7 @@ return userRepository.save(user);
 }
 
 private void validateDuplicateUser(User user){
-    User findUser = userRepository.findByExternalId(user.getExternalId());
+    User findUser = userRepository.findByKakaoId(user.getKakaoId());
     if(findUser != null){
         throw new IllegalStateException("이미 가입된 회원입니다 . ");
     }
