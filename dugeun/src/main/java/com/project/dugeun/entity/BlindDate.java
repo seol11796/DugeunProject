@@ -1,7 +1,6 @@
 package com.project.dugeun.entity;
 
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +13,7 @@ import java.util.Date;
 @Getter @Setter
 @ToString
 public class BlindDate  {
+
     @Id
     @Column(name = "blind_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

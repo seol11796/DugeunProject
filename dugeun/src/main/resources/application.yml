@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dugeun?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+    username: root
+    password: asdfQWER@
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL8Dialect
