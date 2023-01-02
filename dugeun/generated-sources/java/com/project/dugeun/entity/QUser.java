@@ -19,15 +19,15 @@ public class QUser extends EntityPathBase<User> {
 
     public static final QUser user = new QUser("user");
 
-    public final NumberPath<Long> id = createNumber("id", Long.class);
+    public final StringPath externalId = createString("externalId");
 
-    public final StringPath kakaoId = createString("kakaoId");
+    public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final StringPath name = createString("name");
 
     public final StringPath password = createString("password");
 
-    public final NumberPath<Long> studentId = createNumber("studentId", Long.class);
+    public final StringPath studentId = createString("studentId");
 
     public QUser(String variable) {
         super(User.class, forVariable(variable));
