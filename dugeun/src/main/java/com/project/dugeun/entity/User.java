@@ -35,12 +35,16 @@ public class User {
     //@Column(name="student_id")
     private String studentId; // 학번
 
+    private String department; // 학과
+
     @Builder
-    public User(String name, String externalId, String password, String studentId){
+    public User(String name, String externalId, String password, String studentId,
+                String department){
         this.name = name;
         this.externalId = externalId;
         this.password = password;
         this.studentId = studentId;
+        this.department = department;
     }
 
     public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder){
@@ -48,6 +52,7 @@ public class User {
                 .name(userFormDto.getName())
                 .externalId(userFormDto.getExternalId())
                 .studentId(userFormDto.getStudentId())
+                .department(userFormDto.getDepartment())
                 .password(passwordEncoder.encode(userFormDto.getPassword()))
                 .build();
         return user;
