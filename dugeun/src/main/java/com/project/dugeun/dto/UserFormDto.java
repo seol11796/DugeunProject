@@ -24,16 +24,21 @@ public class UserFormDto {
     @NotEmpty(message = "학번 입력을 필수 입니다.")
     private String studentId;
 
+    @NotEmpty(message = "학과를 선택해주세요")
+    private String department;
+
     @NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
     @Length(min = 4, max = 16, message = "비밀번호는 4자 이상, 16자 이하로 입력해주세요.")
     private String password;
 
     @Builder
-    public UserFormDto(String name, String externalId, String studentId, String password){
+    public UserFormDto(String name, String externalId, String studentId, String password,
+                       String department){
         this.name = name;
         this.externalId = externalId;
         this.studentId = studentId;
         this.password = password;
+        this.department = department;
     }
 
 
