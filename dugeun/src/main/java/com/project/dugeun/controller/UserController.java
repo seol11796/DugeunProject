@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/users")
 @Controller
@@ -33,12 +35,14 @@ public class UserController {
     @GetMapping(value="/new")
     public String userForm(Model model){
         model.addAttribute("userFormDto",new UserFormDto());
+
         return "user/userForm";
     }
 
     @PostMapping(value="/new")
     public String userForm(@Valid UserFormDto userFormDto, BindingResult bindingResult, Model model){
         log.info("user info={}", userFormDto.getName());
+//        log.info("user hobbies={}",userFormDto.getHobbies());
         if(bindingResult.hasErrors()){
             return "user/userForm";
         }

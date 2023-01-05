@@ -61,6 +61,16 @@
             <p th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="fieldError">Incorrect data</p>
         </div>
 
+        <div>
+            <div>취미</div>
+            <div th:each="hobby : ${hobbies}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="*{hobbies}" th:value="${hobby.key}"
+                       class="form-check-input">
+                <label th:for="${#ids.prev('hobbies')}"
+                       th:text="${hobby.value}" class="form-check-label">달리기</label>
+            </div>
+        </div>
+
         <div style="text-align: center">
             <button type="submit" class="btn btn-primary" style="">Submit</button>
         </div>
