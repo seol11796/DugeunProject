@@ -29,7 +29,7 @@ class UserServiceTest {
         UserFormDto userFormDto = new UserFormDto();
         userFormDto.setName("james");
         userFormDto.setExternalId("james123");
-        userFormDto.setStudentId(201811796l);
+        userFormDto.setStudentId("201811796");
         userFormDto.setPassword("1234");
         return User.createUser(userFormDto, passwordEncoder);
     }
