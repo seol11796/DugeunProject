@@ -24,6 +24,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; // 자동 생성되는 유저 id
 
+
     //@Column(name="name",nullable = false,unique = true,length = 30)
     private String name; // 유저 이름
 

@@ -19,8 +19,6 @@ public class QUser extends EntityPathBase<User> {
 
     public static final QUser user = new QUser("user");
 
-    public final StringPath department = createString("department");
-
     public final StringPath externalId = createString("externalId");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
