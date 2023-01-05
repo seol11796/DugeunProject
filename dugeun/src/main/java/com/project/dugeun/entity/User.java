@@ -4,10 +4,12 @@ package com.project.dugeun.entity;
 import com.project.dugeun.dto.UserFormDto;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 @Entity
@@ -35,16 +37,16 @@ public class User {
     //@Column(name="student_id")
     private String studentId; // 학번
 
-    private String department; // 학과
+
+
 
     @Builder
-    public User(String name, String externalId, String password, String studentId,
-                String department){
+    public User(String name, String externalId, String password, String studentId
+                ){
         this.name = name;
         this.externalId = externalId;
         this.password = password;
         this.studentId = studentId;
-        this.department = department;
     }
 
     public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder){
@@ -52,7 +54,6 @@ public class User {
                 .name(userFormDto.getName())
                 .externalId(userFormDto.getExternalId())
                 .studentId(userFormDto.getStudentId())
-                .department(userFormDto.getDepartment())
                 .password(passwordEncoder.encode(userFormDto.getPassword()))
                 .build();
         return user;
