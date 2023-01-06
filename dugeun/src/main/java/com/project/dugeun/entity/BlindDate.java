@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name= "blind_date")
 @Getter @Setter
 @ToString
-public class BlindDate  {
+public class BlindDate {
 
     @Id
     @Column(name = "blind_id")
