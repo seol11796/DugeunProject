@@ -28,7 +28,7 @@ class UserServiceTest {
     public User createUser(){
         UserFormDto userFormDto = new UserFormDto();
         userFormDto.setName("james");
-        userFormDto.setExternalId("james123");
+        userFormDto.setKakaoId("james123");
         userFormDto.setStudentId(201811796l);
         userFormDto.setPassword("1234");
         return User.createUser(userFormDto, passwordEncoder);
@@ -41,7 +41,7 @@ class UserServiceTest {
         User savedUser = userService.saveUser(user);
 
         assertEquals(user.getName(), savedUser.getName());
-        assertEquals(user.getExternalId(),savedUser.getExternalId());
+        assertEquals(user.getKakaoId(),savedUser.getKakaoId());
         assertEquals(user.getStudentId(), savedUser.getStudentId());
         assertEquals(user.getPassword(), savedUser.getPassword());
     }

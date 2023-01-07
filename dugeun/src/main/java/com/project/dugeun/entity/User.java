@@ -2,17 +2,23 @@ package com.project.dugeun.entity;
 
 import com.project.dugeun.dto.UserFormDto;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 @Entity
 @Table(name="user")
-@Getter
-@Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class User {
+@Data
+@Builder
+public class User implements UserDetails {
 
     @Id
     @Column(name="user_id", unique = true)
@@ -25,26 +31,67 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @Column(name="external_id", unique = true)
-    private String externalId; // 카카오아이디
+    @Column(name="kakao_id", unique = true)
+    private String kakaoId; // 카카오아이디
 
     @Column(name="student_id")
     private Long studentId; // 학번
 
+    @Column(name="role")
+    private String role; // 유저 권한
+
     public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder){
         User user = new User();
         user.setName(userFormDto.getName());
-        user.setExternalId(userFormDto.getExternalId());
-        userFormDto.setStudentId(userFormDto.getStudentId());
+        user.setKakaoId(userFormDto.getKakaoId());
+        user.setStudentId(userFormDto.getStudentId());
         String password = passwordEncoder.encode(userFormDto.getPassword());
         user.setPassword(password);
         return user;
     }
 
-//    @Column(name="department", nullable = false)
-//    private String department; // 유저 학과
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
 
-//    @Lob
-//    @Column(name="description", nullable = false)
-//    private String description; // 유저 자기소개
+        for (String role : role.split(",")) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.name;
+    }
+
+//    public String getName() {
+//        return this.name;
+//    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

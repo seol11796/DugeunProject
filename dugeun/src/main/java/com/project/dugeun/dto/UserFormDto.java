@@ -12,6 +12,6 @@ public class UserFormDto {
     private String name;
     private String password;
 
-    private String externalId;
+    private String kakaoId;
     private Long studentId;
 }
