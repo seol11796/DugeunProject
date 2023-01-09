@@ -2,7 +2,7 @@ package com.project.dugeun.service;
 
 
 import com.project.dugeun.dto.UserFormDto;
-import com.project.dugeun.entity.User;
+import com.project.dugeun.entity.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

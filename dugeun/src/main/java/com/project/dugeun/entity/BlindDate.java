@@ -1,7 +1,7 @@
 package com.project.dugeun.entity;
 
 
-import lombok.Data;
+import com.project.dugeun.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -50,26 +50,26 @@
             <p th:if="${#fields.hasErrors('studentId')}" th:errors="*{studentId}" class="fieldError">Incorrect data</p>
         </div>
 
-        <div class="form-group">
-            <label th:for="department">학과</label>
-            <select  th:field="*{department}" th:value="*{department}">
-               <option th:selected="*{department}=='공과대학'" value="engineering">공과대학</option>
-                <option th:selected="*{department}=='사범대학'" value="education">사범대학</option>
-                <option th:selected="*{department}=='경영대학'" value="business">경영대학</option>
+<!--        <div class="form-group">-->
+<!--            <label th:for="department">학과</label>-->
+<!--            <select  th:field="*{department}" th:value="*{department}">-->
+<!--               <option th:selected="*{department}=='공과대학'" value="engineering">공과대학</option>-->
+<!--                <option th:selected="*{department}=='사범대학'" value="education">사범대학</option>-->
+<!--                <option th:selected="*{department}=='경영대학'" value="business">경영대학</option>-->
 
-            </select>
-            <p th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="fieldError">Incorrect data</p>
-        </div>
+<!--            </select>-->
+<!--            <p th:if="${#fields.hasErrors('department')}" th:errors="*{department}" class="fieldError">Incorrect data</p>-->
+<!--        </div>-->
 
-        <div>
-            <div>취미</div>
-            <div th:each="hobby : ${hobbies}" class="form-check form-check-inline">
-                <input type="checkbox" th:field="*{hobbies}" th:value="${hobby.key}"
-                       class="form-check-input">
-                <label th:for="${#ids.prev('hobbies')}"
-                       th:text="${hobby.value}" class="form-check-label">달리기</label>
-            </div>
-        </div>
+<!--        <div>-->
+<!--            <div>취미</div>-->
+<!--            <div th:each="hobby : ${hobbies}" class="form-check form-check-inline">-->
+<!--                <input type="checkbox" th:field="*{hobbies}" th:value="${hobby.key}"-->
+<!--                       class="form-check-input">-->
+<!--                <label th:for="${#ids.prev('hobbies')}"-->
+<!--                       th:text="${hobby.value}" class="form-check-label">달리기</label>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div style="text-align: center">
             <button type="submit" class="btn btn-primary" style="">Submit</button>

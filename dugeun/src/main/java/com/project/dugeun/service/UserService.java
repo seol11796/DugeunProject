@@ -1,10 +1,8 @@
 package com.project.dugeun.service;
 
-import com.project.dugeun.entity.User;
+import com.project.dugeun.entity.user.User;
 import com.project.dugeun.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

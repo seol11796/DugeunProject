@@ -20,6 +20,7 @@ public class UserFormDto {
     @NotBlank(message="이름(id)는 필수 입력 입니다.")
     private String name;
 
+
     @NotEmpty(message = "카카오톡 ID입력은 필수 입니다.")
     private String externalId;
 
