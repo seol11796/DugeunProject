@@ -1,79 +1,91 @@
 package com.project.dugeun.entity;
 
+import com.project.dugeun.authority.UserAuthority;
 import com.project.dugeun.dto.UserFormDto;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
+import java.util.*;
 
 @Entity
 @Table(name="user")
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Data
 @Builder
 public class User implements UserDetails {
 
-    @Id
-    @Column(name="user_id", unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", unique = true)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; // 자동 생성되는 유저 id
 
-    @Column(name="name",nullable = false,unique = true,length = 30)
-    private String name; // 유저 이름
+    @Column(name="user_id", unique = true)
+    private String userId; // 유저 아이디
+
+    @Column(name="name",nullable = false, unique = true, length = 30)
+    private String name; // 유저 닉네임
 
     @Column(name="password")
     private String password;
 
-    @Column(name="kakao_id", unique = true)
-    private String kakaoId; // 카카오아이디
+    @Column(name="external_id", unique = true)
+    private String externalId; // 카카오아이디
 
     @Column(name="student_id")
-    private Long studentId; // 학번
+    private String studentId; // 학번
 
-    @Column(name="role")
-    private String role; // 유저 권한
+    private UserAuthority userAuthority;
+
+    @Builder
+    public User(Long id, String userId, String name, String password, String externalId, String studentId, UserAuthority userAuthority) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.password = password;
+        this.externalId = externalId;
+        this.studentId = studentId;
+        this.userAuthority = userAuthority;
+    }
+
+
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        Set<GrantedAuthority> roles = new HashSet<>();
+//        return roles;
+////        List<GrantedAuthority> authorityList = new ArrayList<>();
+////        authorityList.add(new SimpleGrantedAuthority("GENERAL"));
+//
+////        return authorityList;
+//    }
 
     public static User createUser(UserFormDto userFormDto, PasswordEncoder passwordEncoder){
-        User user = new User();
-        user.setName(userFormDto.getName());
-        user.setKakaoId(userFormDto.getKakaoId());
-        user.setStudentId(userFormDto.getStudentId());
-        String password = passwordEncoder.encode(userFormDto.getPassword());
-        user.setPassword(password);
-        return user;
+        return User.builder()
+                .userId(userFormDto.getUserId())
+                .externalId(userFormDto.getExternalId())
+                .studentId(userFormDto.getStudentId())
+                .password(passwordEncoder.encode(userFormDto.getPassword()))
+                .userAuthority(userFormDto.getUserAuthority())
+                .build();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-
-        for (String role : role.split(",")) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
-
-        return authorities;
+        return null;
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return this.name;
+        return userId;
     }
-
-//    public String getName() {
-//        return this.name;
-//    }
 
     @Override
     public boolean isAccountNonExpired() {

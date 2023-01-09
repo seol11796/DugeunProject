@@ -5,13 +5,12 @@ import com.project.dugeun.repository.UserRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,39 +19,39 @@ import java.util.Optional;
 @Slf4j
 public class UserService implements UserDetailsService {
 
-    private final UserRepository userRepository;
-
+    private static UserRepository userRepository;
 
     public User saveUser(User user) {
-//        validateDuplicateUser(user);
+        validateDuplicateUser(user);
         return userRepository.save(user);
     }
 
-//    private void validateDuplicateUser(User user){
-//        User findUser = userRepository.findByKakaoId(user.getKakaoId());
-//        if(findUser != null){
-//            throw new IllegalStateException("이미 가입된 회원입니다.");
-//        }
-//    }
+    private void validateDuplicateUser(User user) {
+        User findUser = userRepository.findByExternalId(user.getExternalId());
+        if (findUser != null) {
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
+    }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findById()
-//        Optional<User> adminUser = userRepository.findUserByName(name);
-//
-//        if (adminUser.isPresent()) {
-//            User admin = adminUser.get();
-//            User authAdmin = User.builder()
-////                    .id(admin.getId())
-//                    .name(admin.getName())
-//                    .password(admin.getPassword())
-////                    .role(admin.getRole())
-//                    .build();
-//
-//            log.info("authAdmin : {} ", authAdmin);
-//            return authAdmin;
-//        }
-//        return null;
+        User user = userRepository.findByUserId(username)
+                .orElseThrow(() -> new UsernameNotFoundException("[" + username + "] Username Not Found"));
+
+        return User.builder()
+                .userId(user.getUserId())
+                .password(user.getPassword())
+                .build();
+//        return userRepository.findByUserId(username)
+//                .orElseThrow(() -> new UsernameNotFoundException("[" + username + "] Username Not Found"));
     }
+
+
+//    private UserDetails toUserDetails(User user) {
+//        return User.builder()
+//                .user(user.getId())
+//                .password(user.getPassword())
+//                .build();
+//    }
 }
