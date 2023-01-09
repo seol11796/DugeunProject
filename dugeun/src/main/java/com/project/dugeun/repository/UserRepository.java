@@ -1,6 +1,6 @@
 package com.project.dugeun.repository;
 
-import com.project.dugeun.entity.User;
+import com.project.dugeun.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

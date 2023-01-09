@@ -1,6 +1,7 @@
 package com.project.dugeun.entity;
 
 import com.project.dugeun.dto.UserFormDto;
+import com.project.dugeun.entity.user.User;
 import com.project.dugeun.repository.UserInfoRepository;
 import com.project.dugeun.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;

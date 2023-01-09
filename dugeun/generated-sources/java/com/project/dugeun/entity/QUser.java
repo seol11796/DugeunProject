@@ -2,6 +2,7 @@ package com.project.dugeun.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.project.dugeun.entity.user.User;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

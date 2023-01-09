@@ -1,15 +1,11 @@
-package com.project.dugeun.entity;
+package com.project.dugeun.entity.user;
 
 
 import com.project.dugeun.dto.UserFormDto;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 
 @Entity
@@ -20,24 +16,24 @@ import java.util.Map;
 public class User {
 
     @Id
-    @Column(name="user_id", unique = true)
+    @Column(name="id", unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; // 자동 생성되는 유저 id
 
+    @Column(name="user_id", unique = true)
+    private String userId; // 유저 아이디
 
-    //@Column(name="name",nullable = false,unique = true,length = 30)
-    private String name; // 유저 이름
+    @Column(name="name",nullable = false,unique = true,length = 30)
+    private String name; // 유저 닉네임
 
-   // @Column(name="password")
+    @Column(name="password")
     private String password;
 
-    //@Column(name="external_id", unique = true)
-    @Column(unique = true)
+    @Column(name="external_id", unique = true)
     private String externalId; // 카카오아이디
 
-    //@Column(name="student_id")
+    @Column(name="student_id")
     private String studentId; // 학번
-
 
 
 
