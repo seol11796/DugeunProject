@@ -2,6 +2,7 @@ package com.project.dugeun.entity.user;
 
 
 import com.project.dugeun.dto.UserFormDto;
+import com.project.dugeun.entity.user.profile.DetailProfile;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -36,6 +37,8 @@ public class User {
     private String studentId; // 학번
 
 
+    @Embedded
+    private DetailProfile detailProfile;
 
     @Builder
     public User(String name, String externalId, String password, String studentId
